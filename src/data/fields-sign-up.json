@@ -1,0 +1,20 @@
+[
+  {
+    "key": "name",
+    "label": "Name",
+    "placeholder": "Eduardo Alvarez",
+    "type": "text"
+  },
+  {
+    "key": "email",
+    "label": "Email",
+    "placeholder": "eduardo.alvarez@novare.se",
+    "type": "text"
+  },
+  {
+    "key": "password",
+    "label": "Password",
+    "placeholder": "********",
+    "type": "password"
+  }
+]
