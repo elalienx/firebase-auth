@@ -3,8 +3,7 @@ import { useState } from "react";
 import { Link, useHistory } from "react-router-dom";
 
 // Project files
-import InputField from "components/InputField";
-import fields from "data/fields-sign-up.json";
+import FieldsSignUp from "components/FieldsSignUp";
 import newUser from "data/new-user.json";
 import { createAccount } from "scripts/authentification";
 import { createDocumentWithId } from "scripts/firestore";
@@ -16,15 +15,10 @@ export default function Login() {
   const history = useHistory();
 
   // Local state
-  const [form, setForm] = useState(newUser);
+  const [form, setForm] = useState(newUser); // move to provider reducer?
   const [errorMessage, setErrorMessage] = useState("");
 
   // Methods
-  function onChange(key, value) {
-    const field = { [key]: value };
-    setForm({ ...form, ...field });
-  }
-
   async function onSubmit(event) {
     event.preventDefault();
     setErrorMessage("");
@@ -46,21 +40,11 @@ export default function Login() {
     setErrorMessage(errorMessage);
   }
 
-  // Components
-  const InputFields = fields.map((item) => (
-    <InputField
-      key={item.key}
-      options={item}
-      state={form[item.key]}
-      onChange={onChange}
-    />
-  ));
-
   return (
     <div>
       <h1>Create an account</h1>
       <form onSubmit={onSubmit}>
-        {InputFields}
+        <FieldsSignUp state={[form, setForm]} />
         <p>{errorMessage}</p>
         <button>Create account</button>
       </form>
