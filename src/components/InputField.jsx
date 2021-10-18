@@ -10,6 +10,7 @@ export default function InputField({ onChange, options, state }) {
   return (
     <label>
       {label}
+      <br />
       <input
         onChange={() => onChange(key, inputReference.current.value)}
         placeholder={placeholder}

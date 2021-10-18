@@ -4,14 +4,13 @@ import { Link, useHistory } from "react-router-dom";
 
 // Project files
 import FieldsSignUp from "components/FieldsSignUp";
-import newUser from "data/new-user.json";
 import { createAccount } from "scripts/authentification";
 import { createDocumentWithId } from "scripts/firestore";
 import { useUser } from "state/UserProvider";
 
 export default function Login() {
   // Global state
-  const { user, setUser, setIsLogged } = useUser(newUser);
+  const { user, setUser, setIsLogged } = useUser();
   const history = useHistory();
 
   // Local state

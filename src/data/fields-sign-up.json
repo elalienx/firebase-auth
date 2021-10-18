@@ -2,7 +2,7 @@
   {
     "key": "name",
     "label": "Name",
-    "placeholder": "Eduardo Alvarez",
+    "placeholder": "John Doe",
     "type": "text",
     "required": true
   },
@@ -14,16 +14,9 @@
     "required": true
   },
   {
-    "key": "age",
-    "label": "Age",
-    "placeholder": "30",
-    "type": "number",
-    "required": true
-  },
-  {
     "key": "email",
     "label": "Email",
-    "placeholder": "eduardo.alvarez@novare.se",
+    "placeholder": "john@mail.com",
     "type": "email",
     "required": true
   },

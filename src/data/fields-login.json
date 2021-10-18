@@ -2,7 +2,7 @@
   {
     "key": "email",
     "label": "Email",
-    "placeholder": "eduardo.alvarez@novare.se",
+    "placeholder": "john@mail.com",
     "type": "email",
     "required": true
   },

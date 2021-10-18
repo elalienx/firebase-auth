@@ -1,14 +1,14 @@
 // NPM packages
-import { useState } from "react";
 import { Link } from "react-router-dom";
 
 // Project files
 import InputField from "components/InputField";
 import fields from "data/fields-login.json";
+import { useUser } from "state/UserProvider";
 
 export default function Login() {
-  // Local state
-  const [user, setUser] = useState({ email: "", password: "" });
+  // Global state
+  const { user, setUser } = useUser();
 
   // Methods
   function onChange(key, value) {
