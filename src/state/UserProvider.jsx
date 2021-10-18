@@ -2,7 +2,7 @@
 import { createContext, useContext, useState } from "react";
 
 // Project files
-import initialState from "../data/new-user.json";
+import initialState from "data/new-user.json";
 
 // Properties
 const UserContext = createContext(null);

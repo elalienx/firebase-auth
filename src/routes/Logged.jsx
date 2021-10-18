@@ -2,9 +2,9 @@
 import { Route } from "react-router-dom";
 
 // Project files
-import Home from "../pages/Home";
-import Login from "../pages/Login";
-import SignUp from "../pages/SignUp";
+import Home from "pages/Home";
+import Login from "pages/Login";
+import SignUp from "pages/SignUp";
 
 export default function Logged() {
   return (

@@ -2,7 +2,7 @@
 import { createUserWithEmailAndPassword } from "firebase/auth";
 
 // Project files
-import { authInstance } from "./firebase";
+import { authInstance } from "scripts/firebase";
 
 export async function createAccount(email, password) {
   const account = { uid: "", error: "", isCreated: false };

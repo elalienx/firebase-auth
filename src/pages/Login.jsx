@@ -3,8 +3,8 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 
 // Project files
-import InputField from "../components/InputField";
-import fields from "../data/fields-login.json";
+import InputField from "components/InputField";
+import fields from "data/fields-login.json";
 
 export default function Login() {
   // Local state

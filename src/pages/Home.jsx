@@ -2,7 +2,7 @@
 import { useHistory } from "react-router-dom";
 
 // Project files
-import { useUser } from "../state/UserProvider";
+import { useUser } from "state/UserProvider";
 
 export default function Home() {
   // Global state

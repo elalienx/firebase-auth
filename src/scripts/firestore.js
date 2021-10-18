@@ -3,7 +3,7 @@ import { collection, doc } from "firebase/firestore/lite"; // normal methods
 import { addDoc, setDoc, updateDoc, getDocs } from "firebase/firestore/lite"; // async methods
 
 // Project files
-import { fireStoreInstance } from "../scripts/firebase";
+import { fireStoreInstance } from "scripts/firebase";
 
 export async function createDocument(path, data) {
   const collectionReference = collection(fireStoreInstance, path);

@@ -3,12 +3,12 @@ import { useState } from "react";
 import { Link, useHistory } from "react-router-dom";
 
 // Project files
-import InputField from "../components/InputField";
-import fields from "../data/fields-sign-up.json";
-import newUser from "../data/new-user.json";
-import { useUser } from "../state/UserProvider";
-import { createAccount } from "../scripts/authentification";
-import { createDocumentWithId } from "../scripts/firestore";
+import InputField from "components/InputField";
+import fields from "data/fields-sign-up.json";
+import newUser from "data/new-user.json";
+import { createAccount } from "scripts/authentification";
+import { createDocumentWithId } from "scripts/firestore";
+import { useUser } from "state/UserProvider";
 
 export default function Login() {
   // Global state
@@ -16,7 +16,7 @@ export default function Login() {
   const history = useHistory();
 
   // Local state
-  const [form, setForm] = useState(user);
+  const [form, setForm] = useState(newUser);
   const [errorMessage, setErrorMessage] = useState("");
 
   // Methods
