@@ -10,8 +10,6 @@ export default function App() {
   // Global state
   const { user } = useUser();
 
-  console.log("App.jsx user", user);
-
   return (
     <div className="App">
       <BrowserRouter>
