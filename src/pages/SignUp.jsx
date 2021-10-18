@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 import InputField from "../components/InputField";
 import fields from "../data/fields-sign-up.json";
 import { createAccount } from "../scripts/authentification";
+import { createDocumentWithId } from "../scripts/firestore";
 
 export default function Login() {
   // Local state
@@ -30,10 +31,10 @@ export default function Login() {
     setErrorMessage("");
     const account = await createAccount(user.email, user.password);
 
-    account.account ? onSuccess(account.uid) : onFailure(account.error);
+    account.isCreated ? onSuccess(account.uid) : onFailure(account.error);
   }
 
-  function onSuccess(uid) {
+  async function onSuccess(uid) {
     console.log("Account success");
     console.log(uid);
     const newUser = {
@@ -41,7 +42,8 @@ export default function Login() {
       city: user.city,
     };
 
-    const document = await createDocumentWithId(newUser, uid);
+    const document = await createDocumentWithId("users", newUser, uid);
+    console.log("document", document);
   }
 
   function onFailure(errorMessage) {

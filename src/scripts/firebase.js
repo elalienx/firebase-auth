@@ -1,5 +1,6 @@
 // NPM package
 import { initializeApp } from "firebase/app";
+import { getFirestore } from "firebase/firestore/lite";
 import { getAuth } from "firebase/auth";
 
 // Using the Project fe-firebase-setup credentials

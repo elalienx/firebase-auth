@@ -1,6 +1,6 @@
 // NPM packages
 import { collection, doc } from "firebase/firestore/lite"; // normal methods
-import { addDoc, updateDoc, getDocs } from "firebase/firestore/lite"; // async methods
+import { addDoc, setDoc, updateDoc, getDocs } from "firebase/firestore/lite"; // async methods
 
 // Project files
 import { fireStoreInstance } from "../scripts/firebase";
@@ -8,6 +8,13 @@ import { fireStoreInstance } from "../scripts/firebase";
 export async function createDocument(path, data) {
   const collectionReference = collection(fireStoreInstance, path);
   const documentReference = await addDoc(collectionReference, data);
+
+  return documentReference.id;
+}
+
+export async function createDocumentWithId(path, id, data) {
+  const collectionReference = collection(fireStoreInstance, path, id);
+  const documentReference = await setDoc(collectionReference, data);
 
   return documentReference.id;
 }
