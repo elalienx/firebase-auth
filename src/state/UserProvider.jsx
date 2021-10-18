@@ -1,20 +1,17 @@
-s;
 // NPM packages
 import { createContext, useContext, useState } from "react";
-
-// Project files
 
 // Properties
 const UserContext = createContext(null);
 
 export function UserProvider({ children }) {
   // Local state
-  const [user, setUser] = useState({});
+  const [user, setUser] = useState({ isLogged: false });
 
   return (
-    <UserProvider.Provider value={{ user, setUser }}>
+    <UserContext.Provider value={{ user, setUser }}>
       {children}
-    </UserProvider.Provider>
+    </UserContext.Provider>
   );
 }
 
