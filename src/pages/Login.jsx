@@ -1,5 +1,6 @@
 // NPM packages
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 // Project files
 import InputField from "../components/InputField";
@@ -16,7 +17,8 @@ export default function Login() {
     setUser({ ...user, ...field });
   }
 
-  function onSubmit() {
+  function onSubmit(event) {
+    event.preventDefault();
     alert("On submit...");
   }
 
@@ -36,6 +38,9 @@ export default function Login() {
       <form onSubmit={onSubmit}>
         {InputFields}
         <button>Login</button>
+        <p>
+          Not a user? <Link to="/sign-up">Create an account now.</Link>
+        </p>
       </form>
     </div>
   );

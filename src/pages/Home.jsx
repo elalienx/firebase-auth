@@ -1,7 +1,14 @@
+// NPM packages
+import { useHistory } from "react-router-dom";
+
 export default function Home() {
+  // Global state
+  const history = useHistory();
+
   // Methods
   function onLogout() {
     alert("On logout...");
+    history.push("/login");
   }
 
   return (

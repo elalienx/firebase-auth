@@ -16,7 +16,8 @@ export default function Login() {
     setUser({ ...user, ...field });
   }
 
-  function onSubmit() {
+  function onSubmit(event) {
+    event.preventDefault();
     alert("On submit...");
   }
 
