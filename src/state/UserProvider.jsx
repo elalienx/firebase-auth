@@ -6,7 +6,7 @@ const UserContext = createContext(null);
 
 export function UserProvider({ children }) {
   // Local state
-  const [user, setUser] = useState({ isLogged: true });
+  const [user, setUser] = useState({ isLogged: false });
 
   return (
     <UserContext.Provider value={{ user, setUser }}>
