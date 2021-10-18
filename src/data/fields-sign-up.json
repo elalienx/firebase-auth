@@ -3,30 +3,35 @@
     "key": "name",
     "label": "Name",
     "placeholder": "Eduardo Alvarez",
-    "type": "text"
+    "type": "text",
+    "required": true
   },
   {
     "key": "city",
     "label": "City",
     "placeholder": "New York",
-    "type": "text"
+    "type": "text",
+    "required": true
   },
   {
     "key": "age",
     "label": "Age",
     "placeholder": "30",
-    "type": "number"
+    "type": "number",
+    "required": true
   },
   {
     "key": "email",
     "label": "Email",
     "placeholder": "eduardo.alvarez@novare.se",
-    "type": "email"
+    "type": "email",
+    "required": true
   },
   {
     "key": "password",
     "label": "Password",
     "placeholder": "********",
-    "type": "password"
+    "type": "password",
+    "required": true
   }
 ]
