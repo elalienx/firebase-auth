@@ -5,29 +5,23 @@ import { Link, useHistory } from "react-router-dom";
 // Project files
 import InputField from "../components/InputField";
 import fields from "../data/fields-sign-up.json";
+import newUser from "../data/new-user.json";
 import { useUser } from "../state/UserProvider";
 import { createAccount } from "../scripts/authentification";
 import { createDocumentWithId } from "../scripts/firestore";
 
 export default function Login() {
   // Global state
-  const { setUser } = useUser();
+  const { setUser, setIsLogged } = useUser(newUser);
   const history = useHistory();
 
   // Local state
-  const [form, setForm] = useState({
-    id: "",
-    name: "Eduardo",
-    city: "Stockholm",
-    email: "eduardo.alvarez@novare.se",
-    password: "12345678",
-  });
+  const [form, setForm] = useState(user);
   const [errorMessage, setErrorMessage] = useState("");
 
   // Methods
   function onChange(key, value) {
     const field = { [key]: value };
-
     setForm({ ...form, ...field });
   }
 
@@ -40,22 +34,15 @@ export default function Login() {
   }
 
   async function onSuccess(uid) {
-    console.log("Account success");
-    console.log(uid);
-    const newUser = {
-      name: form.name,
-      city: form.city,
-    };
+    const newUser = { name: form.name, city: form.city };
 
-    const document = await createDocumentWithId("users", uid, newUser);
-    console.log("document", document);
-    newUser.isLogged = true;
+    await createDocumentWithId("users", uid, newUser);
     setUser(newUser);
+    setIsLogged(true);
     history.push("/");
   }
 
   function onFailure(errorMessage) {
-    console.log("Account failed");
     setErrorMessage(errorMessage);
   }
 

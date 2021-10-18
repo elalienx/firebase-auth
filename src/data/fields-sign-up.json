@@ -12,6 +12,12 @@
     "type": "text"
   },
   {
+    "key": "age",
+    "label": "Age",
+    "placeholder": "30",
+    "type": "number"
+  },
+  {
     "key": "email",
     "label": "Email",
     "placeholder": "eduardo.alvarez@novare.se",

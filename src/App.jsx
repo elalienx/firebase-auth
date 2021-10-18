@@ -8,12 +8,12 @@ import Unlogged from "./routes/Unlogged";
 
 export default function App() {
   // Global state
-  const { user } = useUser();
+  const { isLogged } = useUser();
 
   return (
     <div className="App">
       <BrowserRouter>
-        <Switch>{user.isLogged ? <Logged /> : <Unlogged />}</Switch>
+        <Switch>{isLogged ? <Logged /> : <Unlogged />}</Switch>
       </BrowserRouter>
     </div>
   );
