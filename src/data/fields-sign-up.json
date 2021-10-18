@@ -9,7 +9,7 @@
     "key": "email",
     "label": "Email",
     "placeholder": "eduardo.alvarez@novare.se",
-    "type": "text"
+    "type": "email"
   },
   {
     "key": "password",

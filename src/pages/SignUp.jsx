@@ -1,5 +1,6 @@
 // NPM packages
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 // Project files
 import InputField from "../components/InputField";
@@ -7,7 +8,11 @@ import fields from "../data/fields-sign-up.json";
 
 export default function Login() {
   // Local state
-  const [user, setUser] = useState({ name: "", email: "", password: "" });
+  const [user, setUser] = useState({
+    name: "Eduardo",
+    email: "eduardo.alvarez@novare.se",
+    password: "12345678",
+  });
 
   // Methods
   function onChange(key, value) {
@@ -18,7 +23,7 @@ export default function Login() {
 
   function onSubmit(event) {
     event.preventDefault();
-    alert("On submit...");
+    console.log("On submit with:", user.email, user.password);
   }
 
   // Components
@@ -38,6 +43,7 @@ export default function Login() {
         {InputFields}
         <button>Create account</button>
       </form>
+      <Link to="/login">Login instead</Link>
     </div>
   );
 }
