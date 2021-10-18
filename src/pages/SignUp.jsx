@@ -11,24 +11,23 @@ import { useUser } from "state/UserProvider";
 
 export default function Login() {
   // Global state
-  const { setUser, setIsLogged } = useUser(newUser);
+  const { user, setUser, setIsLogged } = useUser(newUser);
   const history = useHistory();
 
   // Local state
-  const [form, setForm] = useState(newUser); // move to provider reducer?
   const [errorMessage, setErrorMessage] = useState("");
 
   // Methods
   async function onSubmit(event) {
     event.preventDefault();
     setErrorMessage("");
-    const account = await createAccount(form.email, form.password);
+    const account = await createAccount(user.email, user.password);
 
-    account.isCreated ? onSuccess(account.uid) : onFailure(account.error);
+    account.isCreated ? onSuccess(account.payload) : onFailure(account.payload);
   }
 
   async function onSuccess(uid) {
-    const newUser = { name: form.name, city: form.city };
+    const newUser = { name: user.name, city: user.city };
 
     await createDocumentWithId("users", uid, newUser);
     setUser(newUser);
@@ -36,15 +35,15 @@ export default function Login() {
     history.push("/");
   }
 
-  function onFailure(errorMessage) {
-    setErrorMessage(errorMessage);
+  function onFailure(message) {
+    setErrorMessage(message);
   }
 
   return (
     <div>
       <h1>Create an account</h1>
       <form onSubmit={onSubmit}>
-        <FieldsSignUp state={[form, setForm]} />
+        <FieldsSignUp />
         <p>{errorMessage}</p>
         <button>Create account</button>
       </form>

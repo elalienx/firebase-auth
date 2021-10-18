@@ -5,7 +5,7 @@ import { createUserWithEmailAndPassword } from "firebase/auth";
 import { authInstance } from "scripts/firebase";
 
 export async function createAccount(email, password) {
-  const account = { uid: "", error: "", isCreated: false };
+  const account = { isCreated: false, payload: "" };
 
   try {
     const userCredential = await createUserWithEmailAndPassword(
@@ -13,11 +13,10 @@ export async function createAccount(email, password) {
       email,
       password
     );
-    account.uid = userCredential.user.uid;
+    account.payload = userCredential.user.uid;
     account.isCreated = true;
   } catch (error) {
-    console.error("error.code", error.code);
-    account.error = error.message;
+    account.payload = error.message;
   }
 
   return account;

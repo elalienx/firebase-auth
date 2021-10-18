@@ -1,14 +1,16 @@
 // Project files
 import InputField from "components/InputField";
 import fields from "data/fields-sign-up.json";
+import { useUser } from "state/UserProvider";
 
-export default function FieldsSignUp({ state }) {
-  const [form, setForm] = state;
+export default function FieldsSignUp() {
+  const { user, setUser } = useUser();
 
   // Methods
   function onChange(key, value) {
     const field = { [key]: value };
-    setForm({ ...form, ...field });
+
+    setUser({ ...user, ...field });
   }
 
   // Components
@@ -16,7 +18,7 @@ export default function FieldsSignUp({ state }) {
     <InputField
       key={item.key}
       options={item}
-      state={form[item.key]}
+      state={user[item.key]}
       onChange={onChange}
     />
   ));

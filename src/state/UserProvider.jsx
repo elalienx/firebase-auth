@@ -7,15 +7,12 @@
 // NPM packages
 import { createContext, useContext, useState } from "react";
 
-// Project files
-import initialState from "data/new-user.json";
-
 // Properties
 const UserContext = createContext(null);
 
 export function UserProvider({ children }) {
   // Local state
-  const [user, setUser] = useState(initialState);
+  const [user, setUser] = useState({});
   const [isLogged, setIsLogged] = useState(false);
 
   return (
