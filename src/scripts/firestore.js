@@ -13,10 +13,10 @@ export async function createDocument(path, data) {
 }
 
 export async function createDocumentWithId(path, id, data) {
-  const collectionReference = collection(fireStoreInstance, path, id);
-  const documentReference = await setDoc(collectionReference, data);
+  const documentReference = doc(fireStoreInstance, path, id);
+  await setDoc(documentReference, data);
 
-  return documentReference.id;
+  return id;
 }
 
 export async function updateDocument(path, data) {

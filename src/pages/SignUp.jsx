@@ -1,16 +1,21 @@
 // NPM packages
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 
 // Project files
 import InputField from "../components/InputField";
 import fields from "../data/fields-sign-up.json";
+import { useUser } from "../state/UserProvider";
 import { createAccount } from "../scripts/authentification";
 import { createDocumentWithId } from "../scripts/firestore";
 
 export default function Login() {
+  // Global state
+  const { setUser } = useUser();
+  const history = useHistory();
+
   // Local state
-  const [user, setUser] = useState({
+  const [form, setForm] = useState({
     id: "",
     name: "Eduardo",
     city: "Stockholm",
@@ -23,13 +28,13 @@ export default function Login() {
   function onChange(key, value) {
     const field = { [key]: value };
 
-    setUser({ ...user, ...field });
+    setForm({ ...form, ...field });
   }
 
   async function onSubmit(event) {
     event.preventDefault();
     setErrorMessage("");
-    const account = await createAccount(user.email, user.password);
+    const account = await createAccount(form.email, form.password);
 
     account.isCreated ? onSuccess(account.uid) : onFailure(account.error);
   }
@@ -38,12 +43,15 @@ export default function Login() {
     console.log("Account success");
     console.log(uid);
     const newUser = {
-      name: user.name,
-      city: user.city,
+      name: form.name,
+      city: form.city,
     };
 
-    const document = await createDocumentWithId("users", newUser, uid);
+    const document = await createDocumentWithId("users", uid, newUser);
     console.log("document", document);
+    newUser.isLogged = true;
+    setUser(newUser);
+    history.push("/");
   }
 
   function onFailure(errorMessage) {
@@ -56,7 +64,7 @@ export default function Login() {
     <InputField
       key={item.key}
       options={item}
-      state={user[item.key]}
+      state={form[item.key]}
       onChange={onChange}
     />
   ));
