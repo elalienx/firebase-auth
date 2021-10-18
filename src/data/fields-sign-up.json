@@ -6,6 +6,12 @@
     "type": "text"
   },
   {
+    "key": "city",
+    "label": "City",
+    "placeholder": "New York",
+    "type": "text"
+  },
+  {
     "key": "email",
     "label": "Email",
     "placeholder": "eduardo.alvarez@novare.se",
