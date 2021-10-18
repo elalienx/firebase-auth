@@ -15,6 +15,7 @@ export default function InputField({ onChange, options, state }) {
         onChange={() => onChange(key, inputReference.current.value)}
         placeholder={placeholder}
         ref={inputReference}
+        name={key}
         type={type}
         value={state}
         required={required}
