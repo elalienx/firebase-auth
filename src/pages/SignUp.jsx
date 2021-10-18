@@ -22,7 +22,6 @@ export default function Login() {
   async function onSubmit(event) {
     event.preventDefault();
     setErrorMessage("");
-    console.log("onSubmit", form.email, form.password);
     const account = await createAccount(form.email, form.password);
 
     account.isCreated ? onSuccess(account.uid) : onFailure(account.error);
