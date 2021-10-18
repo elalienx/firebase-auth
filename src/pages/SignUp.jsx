@@ -3,7 +3,8 @@ import { useState } from "react";
 import { Link, useHistory } from "react-router-dom";
 
 // Project files
-import FieldsSignUp from "components/FieldsSignUp";
+import InputFields from "components/InputFields";
+import fields from "data/fields-sign-up.json";
 import { createAccount } from "scripts/authentification";
 import { createDocumentWithId } from "scripts/firestore";
 import { useUser } from "state/UserProvider";
@@ -42,7 +43,7 @@ export default function Login() {
     <div>
       <h1>Create an account</h1>
       <form onSubmit={onSubmit}>
-        <FieldsSignUp />
+        <InputFields fields={fields} />
         <p>{errorMessage}</p>
         <button>Create account</button>
       </form>

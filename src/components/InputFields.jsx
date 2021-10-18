@@ -1,9 +1,9 @@
 // Project files
 import InputField from "components/InputField";
-import fields from "data/fields-sign-up.json";
 import { useUser } from "state/UserProvider";
 
-export default function FieldsSignUp() {
+export default function InputFields({ fields }) {
+  // Global state
   const { user, setUser } = useUser();
 
   // Methods
