@@ -5,7 +5,6 @@ import { Link } from "react-router-dom";
 // Project files
 import InputField from "components/InputField";
 import fields from "data/fields-sign-up.json";
-import { createAccount } from "scripts/authentification";
 
 export default function Login() {
   // Local state
