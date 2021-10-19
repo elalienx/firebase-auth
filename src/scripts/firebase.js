@@ -1,5 +1,6 @@
 // NPM package
 import { initializeApp } from "firebase/app";
+import { getAuth } from "firebase/auth";
 
 // Using the Project fe-firebase-setup credentials
 const firebaseConfiguration = {
@@ -12,3 +13,5 @@ const firebaseConfiguration = {
 };
 
 const firebaseInstance = initializeApp(firebaseConfiguration);
+
+export const authInstance = getAuth(firebaseInstance);

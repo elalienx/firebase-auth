@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 // Project files
 import InputField from "components/InputField";
 import fields from "data/fields-sign-up.json";
+import { createAccount } from "scripts/authentification";
 
 export default function Login() {
   // Local state
@@ -17,9 +18,8 @@ export default function Login() {
     setUser({ ...user, ...field });
   }
 
-  function onSubmit(event) {
+  async function onSubmit(event) {
     event.preventDefault();
-    alert("On submit...");
   }
 
   // Components
