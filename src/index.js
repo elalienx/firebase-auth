@@ -1,5 +1,8 @@
+// NPM packages
 import React from "react";
 import ReactDOM from "react-dom";
+
+// Project files
 import App from "./App";
 
 ReactDOM.render(
