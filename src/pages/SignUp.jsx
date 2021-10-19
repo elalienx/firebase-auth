@@ -1,37 +1,51 @@
 // NPM packages
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { useHistory, Link } from "react-router-dom";
 
 // Project files
 import InputField from "components/InputField";
 import fields from "data/fields-sign-up.json";
+import { useAuth } from "state/AuthProvider";
 import { createAccount } from "scripts/authentification";
+import { createDocumentWithId } from "scripts/fireStore";
 
 export default function Login() {
+  // Global state
+  const { setIsLogged, setUser } = useAuth();
+  const history = useHistory();
+
   // Local state
-  const [user, setUser] = useState({});
+  const [form, setForm] = useState({});
   const [errorMessage, setErrorMessage] = useState("");
 
   // Methods
   function onChange(key, value) {
     const field = { [key]: value };
 
-    setUser({ ...user, ...field });
+    setForm({ ...form, ...field });
   }
 
   async function onSubmit(event) {
     event.preventDefault();
     setErrorMessage("");
-    const account = await createAccount(user.email, user.password);
+    const account = await createAccount(form.email, form.password);
 
     account.isCreated ? onSuccess(account.payload) : onFailure(account.payload);
   }
 
-  function onSuccess(uid) {
+  async function onSuccess(uid) {
+    const newUser = { name: form.name, city: form.city };
+
     // To do:
     // 1. create a user in the database using the UID as the document id.
+    await createDocumentWithId("users", uid, newUser);
+
     // 2. update global state: user and isLogged
+    setIsLogged(true);
+    setUser(newUser);
+
     // 3. redirect to home
+    history.push("/");
   }
 
   function onFailure(message) {
@@ -43,7 +57,7 @@ export default function Login() {
     <InputField
       key={item.key}
       options={item}
-      state={user[item.key]}
+      state={form[item.key]}
       onChange={onChange}
     />
   ));
