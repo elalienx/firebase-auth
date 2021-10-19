@@ -2,22 +2,21 @@
 import { createUserWithEmailAndPassword } from "firebase/auth";
 
 // Project files
-import { authInstance } from "./firebase";
+import { authInstance } from "scripts/firebase";
 
 export async function createAccount(email, password) {
-  const account = { isCreated: false, payload: null };
+  const account = { isCreated: false, payload: "" };
 
   try {
-    const crendential = await createUserWithEmailAndPassword(
+    const userCredential = await createUserWithEmailAndPassword(
       authInstance,
       email,
       password
     );
-
+    account.payload = userCredential.user.uid;
     account.isCreated = true;
-    account.payload = crendential.user.uid;
   } catch (error) {
-    account.payload = error;
+    account.payload = error.message;
   }
 
   return account;
