@@ -1,5 +1,6 @@
 // NPM packages
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 // Project files
 import InputField from "components/InputField";
@@ -38,6 +39,7 @@ export default function Login() {
         {InputFields}
         <button>Create account</button>
       </form>
+      <Link to="/login">Login instead</Link>
     </div>
   );
 }

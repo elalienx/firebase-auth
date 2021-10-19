@@ -38,10 +38,8 @@ export default function Login() {
       <form onSubmit={onSubmit}>
         {InputFields}
         <button>Login</button>
-        <p>
-          Not a user? <Link to="/sign-up">Create an account now.</Link>
-        </p>
       </form>
+      <Link to="/sign-up">Create an account</Link>
     </div>
   );
 }
