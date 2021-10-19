@@ -13,10 +13,11 @@ export async function createAccount(email, password) {
       email,
       password
     );
-    account.payload = userCredential.user.uid;
     account.isCreated = true;
+    account.payload = userCredential.user.uid;
   } catch (error) {
-    account.payload = error.message;
+    console.error("authentification.js error", error);
+    account.payload = error.code;
   }
 
   return account;
