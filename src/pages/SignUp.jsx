@@ -1,3 +1,7 @@
+/**
+ * Note:
+ * We can further refactor by creating an file called SignUpModel.js that abstract firebase from React
+ */
 // NPM packages
 import { useState } from "react";
 import { Link, useHistory } from "react-router-dom";
