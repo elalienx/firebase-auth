@@ -1,14 +1,41 @@
 // NPM packages
-import { Link } from "react-router-dom";
+import { useState } from "react";
+import { Link, useHistory } from "react-router-dom";
 
 // Project files
 import InputFields from "components/InputFields";
 import fields from "data/fields-login.json";
+import { useUser } from "state/UserProvider";
+import { signIn } from "scripts/authentification";
+import { getDocument } from "scripts/firestore";
 
 export default function Login() {
-  function onSubmit(event) {
+  // Global state
+  const { user, setUser, setIsLogged } = useUser();
+  const history = useHistory();
+
+  // Local state
+  const [errorMessage, setErrorMessage] = useState("");
+
+  // Methods
+  async function onSubmit(event) {
     event.preventDefault();
-    alert("On submit...");
+    setErrorMessage("");
+    const account = await signIn(user.email, user.password);
+
+    account.isLogged ? onSuccess(account.payload) : onFailure(account.payload);
+  }
+
+  async function onSuccess(uid) {
+    const document = await getDocument("users", uid);
+
+    setUser(document);
+    setIsLogged(true);
+    history.push("/");
+  }
+
+  function onFailure(message) {
+    setErrorMessage(message);
   }
 
   return (
@@ -16,6 +43,7 @@ export default function Login() {
       <h1>Log in</h1>
       <form onSubmit={onSubmit}>
         <InputFields fields={fields} />
+        <p>{errorMessage}</p>
         <button>Login</button>
       </form>
       <Link to="/sign-up">Create an account</Link>
