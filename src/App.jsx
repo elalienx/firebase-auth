@@ -5,6 +5,7 @@ import { BrowserRouter, Switch, Route } from "react-router-dom";
 import Home from "pages/Home";
 import Login from "pages/Login";
 import SignUp from "pages/SignUp";
+import { useAuth } from "state/AuthProvider";
 
 export default function App() {
   return (

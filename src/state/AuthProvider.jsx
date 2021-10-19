@@ -6,7 +6,7 @@ const AuthContext = createContext(null);
 
 export function AuthProvider({ children }) {
   // Local state
-  const [user, setUser] = useState({});
+  const [user, setUser] = useState({ name: "Eduardo" });
   const [isLogged, setIsLogged] = useState(false);
 
   return (
