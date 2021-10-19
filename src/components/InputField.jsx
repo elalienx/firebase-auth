@@ -9,12 +9,14 @@ export default function InputField({ onChange, options, state }) {
   return (
     <label>
       {label}
+      <br />
       <input
         onChange={() => onChange(key, inputReference.current.value)}
         placeholder={placeholder}
         ref={inputReference}
         type={type}
         value={state}
+        required
       />
     </label>
   );
