@@ -8,6 +8,7 @@ import fields from "data/fields-login.json";
 import { useAuth } from "state/AuthProvider";
 import { signIn } from "scripts/authentification";
 import { getDocument } from "scripts/fireStore";
+import InputCheckbox from "components/InputCheckbox";
 
 export default function Login() {
   // Global state
@@ -45,15 +46,9 @@ export default function Login() {
       <h1>Log in</h1>
       <form onSubmit={onSubmit}>
         <InputFields fields={fields} state={[form, setForm]} />
-        <label>
-          <input
-            type="checkbox"
-            checked={remember}
-            onChange={() => setRemember(!remember)}
-            label="foo"
-          />
+        <InputCheckbox state={[remember, setRemember]}>
           Remember me
-        </label>
+        </InputCheckbox>
         <p>{errorMessage}</p>
         <button>Login</button>
       </form>
