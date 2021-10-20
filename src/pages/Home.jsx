@@ -4,6 +4,7 @@ import { useHistory } from "react-router-dom";
 // Project files
 import { useAuth } from "state/AuthProvider";
 import { useUser } from "state/UserProvider";
+import { logout } from "scripts/authentification";
 
 export default function Home() {
   // Global state
@@ -12,9 +13,11 @@ export default function Home() {
   const history = useHistory();
 
   // Methods
-  function onLogout() {
+  async function onLogout() {
+    const account = await logout();
+
+    console.log("Home.jsx account", account);
     setIsLogged(false);
-    localStorage.setItem("uid", "");
     history.push("/");
   }
 
