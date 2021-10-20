@@ -12,7 +12,8 @@ import { useUser } from "state/UserProvider";
 
 export default function Login() {
   // Global state
-  const { setIsLogged, setUser } = useAuth();
+  const { setUser } = useUser();
+  const { setIsLogged } = useAuth();
   const history = useHistory();
 
   // Local state

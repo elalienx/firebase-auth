@@ -9,8 +9,9 @@ import { useUser } from "state/UserProvider";
 
 export default function App() {
   // Global state
-  const { uid, isLogged, setIsLogged } = useAuth();
+  const { uid, setIsLogged } = useAuth();
   const { setUser } = useUser();
+  const isLogged = false;
 
   // Local state
   const [status, setStatus] = useState(0); // 0 pending, 1 ready, 2 error
@@ -29,7 +30,7 @@ export default function App() {
     }
 
     fetchUser();
-  }, []);
+  }, [setIsLogged, setUser, uid]);
 
   return (
     <div className="App">
