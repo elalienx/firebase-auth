@@ -7,11 +7,12 @@ import InputCheckbox from "components/InputCheckbox";
 import InputFields from "components/InputFields";
 import fields from "data/fields-login.json";
 import { signIn } from "scripts/authentification";
+import { getDocument } from "scripts/fireStore";
 import { useAuth } from "state/AuthProvider";
 
 export default function Login() {
   // Global state
-  const { setIsLogged } = useAuth();
+  const { setIsLogged, setUser } = useAuth();
   const history = useHistory();
 
   // Local state
@@ -29,8 +30,11 @@ export default function Login() {
   }
 
   async function onSuccess(uid) {
-    if (remember) localStorage.setItem("uid", uid);
+    const document = await getDocument("users", uid);
+
+    setUser(document);
     setIsLogged(true);
+    if (remember) localStorage.setItem("uid", uid);
     history.push("/");
   }
 
