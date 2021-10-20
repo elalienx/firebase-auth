@@ -1,16 +1,14 @@
 // Project files
 import InputField from "components/InputField";
-import { useUser } from "state/UserProvider";
 
-export default function InputFields({ fields }) {
-  // Global state
-  const { user, setUser } = useUser();
+export default function InputFields({ fields, state }) {
+  const [form, setForm] = state;
 
   // Methods
   function onChange(key, value) {
     const field = { [key]: value };
 
-    setUser({ ...user, ...field });
+    setForm({ ...form, ...field });
   }
 
   // Components
@@ -18,7 +16,7 @@ export default function InputFields({ fields }) {
     <InputField
       key={item.key}
       options={item}
-      state={user[item.key]}
+      state={form[item.key]}
       onChange={onChange}
     />
   ));

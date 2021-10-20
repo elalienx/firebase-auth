@@ -19,6 +19,12 @@ export default function Login() {
   const history = useHistory();
 
   // Local state
+  const [form, setForm] = useState({
+    name: "",
+    city: "",
+    email: "",
+    password: "",
+  });
   const [errorMessage, setErrorMessage] = useState("");
 
   // Methods
@@ -47,7 +53,7 @@ export default function Login() {
     <div>
       <h1>Create an account</h1>
       <form onSubmit={onSubmit}>
-        <InputFields fields={fields} />
+        <InputFields fields={fields} state={[form, setForm]} />
         <p>{errorMessage}</p>
         <button>Create account</button>
       </form>

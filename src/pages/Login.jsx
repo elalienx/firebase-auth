@@ -15,6 +15,7 @@ export default function Login() {
   const history = useHistory();
 
   // Local state
+  const [form, setForm] = useState({ email: "", password: "" });
   const [errorMessage, setErrorMessage] = useState("");
 
   // Methods
@@ -42,7 +43,7 @@ export default function Login() {
     <div>
       <h1>Log in</h1>
       <form onSubmit={onSubmit}>
-        <InputFields fields={fields} />
+        <InputFields fields={fields} state={[form, setForm]} />
         <p>{errorMessage}</p>
         <button>Login</button>
       </form>
