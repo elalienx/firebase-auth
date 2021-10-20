@@ -28,9 +28,10 @@ export default function App() {
         setStatus(2);
       }
     },
-    [setUser]
+    [setUser, setIsLogged]
   );
 
+  // We need to take care of the if is logged out case
   useEffect(() => {
     if (auth !== "") fetchUser("users", auth);
   }, [fetchUser, auth]);

@@ -6,12 +6,9 @@ import { Link, useHistory } from "react-router-dom";
 import InputField from "components/InputField";
 import fields from "data/fields-login.json";
 import { signIn } from "scripts/authentification";
-import { getDocument } from "scripts/fireStore";
-import { useAuth } from "state/AuthProvider";
 
 export default function Login() {
   // Global state
-  const { setUser, setIsLogged } = useAuth();
   const history = useHistory();
 
   // Local state
@@ -34,14 +31,7 @@ export default function Login() {
   }
 
   async function onSuccess(uid) {
-    // 1. get the user data from Firestore using the uid as the document id.
-    const loggedUser = await getDocument("users", uid);
-
-    // 2. update the global state (user, isLogged)
-    setUser(loggedUser);
-    setIsLogged(true);
-
-    // 3. redirect to home page ("/")
+    console.log("login sucess with uid", uid);
     history.push("/");
   }
 

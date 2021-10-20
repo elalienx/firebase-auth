@@ -5,13 +5,11 @@ import { useHistory, Link } from "react-router-dom";
 // Project files
 import InputField from "components/InputField";
 import fields from "data/fields-sign-up.json";
-import { useAuth } from "state/AuthProvider";
 import { createAccount } from "scripts/authentification";
 import { createDocumentWithId } from "scripts/fireStore";
 
 export default function Login() {
   // Global state
-  const { setIsLogged, setUser } = useAuth();
   const history = useHistory();
 
   // Local state
@@ -35,16 +33,7 @@ export default function Login() {
 
   async function onSuccess(uid) {
     const newUser = { name: form.name, city: form.city };
-
-    // To do:
-    // 1. create a user in the database using the UID as the document id.
     await createDocumentWithId("users", uid, newUser);
-
-    // 2. update global state: user and isLogged
-    setIsLogged(true);
-    setUser(newUser);
-
-    // 3. redirect to home
     history.push("/");
   }
 
