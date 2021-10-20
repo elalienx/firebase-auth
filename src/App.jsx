@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 
 // Project files
 import { useAuth } from "state/AuthProvider";
-import { getDocument } from "scripts/firestore";
+import { getDocument } from "scripts/firestore2";
 import Browser from "components/Browser";
 
 export default function App() {

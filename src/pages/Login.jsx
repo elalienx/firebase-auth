@@ -7,7 +7,7 @@ import InputCheckbox from "components/InputCheckbox";
 import InputFields from "components/InputFields";
 import fields from "data/fields-login.json";
 import { signIn } from "scripts/authentification";
-import { getDocument } from "scripts/firestore";
+import { getDocument } from "scripts/firestore2";
 import { useAuth } from "state/AuthProvider";
 
 export default function Login() {
