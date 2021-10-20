@@ -1,10 +1,8 @@
 // NPM packages
-import { useState, useEffect, useCallback } from "react";
+import { useEffect, useCallback } from "react";
 import { BrowserRouter, Switch } from "react-router-dom";
-import { onAuthStateChanged } from "firebase/auth";
 
 // Project files
-import { authInstance } from "scripts/firebase";
 import { getDocument } from "scripts/fireStore";
 import { useAuth } from "state/AuthProvider";
 import Logged from "routes/Logged";
@@ -12,34 +10,18 @@ import Unlogged from "routes/Unlogged";
 
 export default function App() {
   // Global state
-  const { setUser, isLogged } = useAuth();
-
-  // Local state
-  const [loginUID, setLoginUID] = useState("");
+  const { isLogged, auth } = useAuth();
 
   // Methods
-  // 1. check if the user is login
-  const checkLogin = useCallback(async () => {
-    onAuthStateChanged(authInstance, (user) => {
-      if (user) setLoginUID(user.uid);
-      else console.log("AuthProvider user signed out");
-    });
+  const fetchUser = useCallback(async (auth) => {
+    const user = await getDocument("users", auth);
+
+    console.log("App.jsx fetchUser() user", user);
   }, []);
 
-  // 2. if so, load profile
-  const getUser = useCallback(async () => {
-    console.log("getUser");
-
-    const user = await getDocument("users", loginUID);
-    console.log("user");
-    setUser(user);
-  }, [loginUID, setUser]);
-
   useEffect(() => {
-    checkLogin();
-
-    if (loginUID !== "") getUser();
-  }, [checkLogin, getUser, loginUID]);
+    if (auth !== "") fetchUser(auth);
+  }, []);
 
   return (
     <div className="App">
