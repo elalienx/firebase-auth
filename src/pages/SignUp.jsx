@@ -1,13 +1,14 @@
 // NPM packages
 import { useState } from "react";
-import { useHistory, Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 
 // Project files
 import InputFields from "components/InputFields";
 import fields from "data/fields-sign-up.json";
-import { useAuth } from "state/AuthProvider";
 import { createAccount } from "scripts/authentification";
 import { createDocumentWithId } from "scripts/firestore";
+import { useAuth } from "state/AuthProvider";
+import { useUser } from "state/UserProvider";
 
 export default function Login() {
   // Global state

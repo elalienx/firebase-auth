@@ -9,10 +9,12 @@ import fields from "data/fields-login.json";
 import { signIn } from "scripts/authentification";
 import { getDocument } from "scripts/firestore";
 import { useAuth } from "state/AuthProvider";
+import { useUser } from "state/UserProvider";
 
 export default function Login() {
   // Global state
-  const { setIsLogged, setUser } = useAuth();
+  const { setUser } = useUser();
+  const { setIsLogged } = useAuth();
   const history = useHistory();
 
   // Local state

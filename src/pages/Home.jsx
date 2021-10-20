@@ -3,10 +3,12 @@ import { useHistory } from "react-router-dom";
 
 // Project files
 import { useAuth } from "state/AuthProvider";
+import { useUser } from "state/UserProvider";
 
 export default function Home() {
   // Global state
-  const { user, setIsLogged } = useAuth();
+  const { user } = useUser();
+  const { setIsLogged } = useAuth();
   const history = useHistory();
 
   // Methods

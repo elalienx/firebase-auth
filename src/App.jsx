@@ -2,35 +2,34 @@
 import { useEffect, useState } from "react";
 
 // Project files
-import { useAuth } from "state/AuthProvider";
-import { getDocument } from "scripts/firestore";
 import Browser from "components/Browser";
+import { getDocument } from "scripts/firestore";
+import { useAuth } from "state/AuthProvider";
+import { useUser } from "state/UserProvider";
 
 export default function App() {
   // Global state
-  const { isLogged, setIsLogged, setUser } = useAuth();
+  const { uid, isLogged, setIsLogged } = useAuth();
+  const { setUser } = useUser();
 
   // Local state
   const [status, setStatus] = useState(0); // 0 pending, 1 ready, 2 error
 
   // Methods
   useEffect(() => {
-    async function checkLogin() {
-      const uid = localStorage.getItem("uid");
-      console.log("App.jsx uid", uid);
-
-      if (uid) {
+    async function fetchUser() {
+      if (uid === "no user") setStatus(1);
+      if (uid !== "") {
         const user = await getDocument("users", uid);
 
         setUser(user);
         setIsLogged(true);
         setStatus(1);
-      } else {
-        setStatus(1);
       }
     }
-    checkLogin();
-  }, [setIsLogged, setUser]);
+
+    fetchUser();
+  }, []);
 
   return (
     <div className="App">
