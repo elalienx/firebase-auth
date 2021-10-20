@@ -18,8 +18,6 @@ export default function App() {
   // Methods
   const fetchUser = useCallback(
     async (path, uid) => {
-      console.log("App.jsx fetchUser uid", uid);
-
       if (uid === "no user") {
         setStatus(1);
       } else if (uid !== "") {
