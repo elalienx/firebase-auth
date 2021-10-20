@@ -3,40 +3,24 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 
 // Project files
-import InputField from "components/InputField";
+import InputFields from "components/InputFields"
 import fields from "data/fields-login.json";
 
 export default function Login() {
   // Local state
-  const [user, setUser] = useState({ email: "", password: "" });
+  const [form, setForm] = useState({ email: "", password: "" });
 
   // Methods
-  function onChange(key, value) {
-    const field = { [key]: value };
-
-    setUser({ ...user, ...field });
-  }
-
   function onSubmit(event) {
     event.preventDefault();
-    alert("On submit...");
+    alert("Login not implemented");
   }
-
-  // Components
-  const InputFields = fields.map((item) => (
-    <InputField
-      key={item.key}
-      options={item}
-      state={user[item.key]}
-      onChange={onChange}
-    />
-  ));
 
   return (
     <div>
       <h1>Log in</h1>
       <form onSubmit={onSubmit}>
-        {InputFields}
+        <InputFields fields={fields} state={[form, setForm]} />
         <button>Login</button>
       </form>
       <Link to="/sign-up">Create an account</Link>
