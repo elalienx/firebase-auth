@@ -3,7 +3,7 @@ import { collection, doc, getDocs } from "firebase/firestore/lite";
 import { addDoc, setDoc, updateDoc, getDoc } from "firebase/firestore/lite";
 
 // Project files
-import { fireStoreInstance } from "../scripts/firebase";
+import { fireStoreInstance } from "./firebase";
 
 // Create
 export async function createDocumentWithId(path, id, data) {

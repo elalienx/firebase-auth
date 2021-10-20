@@ -7,7 +7,7 @@ import InputFields from "components/InputFields";
 import fields from "data/fields-login.json";
 import { useAuth } from "state/AuthProvider";
 import { signIn } from "scripts/authentification";
-import { getDocument } from "scripts/fireStore";
+import { getDocument } from "scripts/firestore";
 
 export default function Login() {
   // Global state
