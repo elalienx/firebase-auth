@@ -1,6 +1,6 @@
 // NPM packages
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 
 // Project files
 import InputField from "components/InputField";
@@ -11,7 +11,8 @@ import { useAuth } from "state/AuthProvider";
 
 export default function Login() {
   // Global state
-  const { setUser } = useAuth();
+  const { setUser, setIsLogged } = useAuth();
+  const history = useHistory();
 
   // Local state
   const [form, setForm] = useState({});
@@ -36,13 +37,12 @@ export default function Login() {
     // 1. get the user data from Firestore using the uid as the document id.
     const loggedUser = await getDocument("users", uid);
 
-    // 2. update the global state (AuthProvider)
+    // 2. update the global state (user, isLogged)
     setUser(loggedUser);
+    setIsLogged(true);
 
-    // 3. store the auth token (let's discuss options)
-    localStorage.setItem("uid", uid);
-
-    // 4. redirect to home page ("/")
+    // 3. redirect to home page ("/")
+    history.push("/");
   }
 
   function onFailure(message) {
