@@ -3,7 +3,7 @@ import { useState } from "react";
 import { Link, useHistory } from "react-router-dom";
 
 // Project files
-import InputField from "components/InputField";
+import InputFields from "components/InputFields";
 import fields from "data/fields-login.json";
 import { signIn } from "scripts/authentification";
 
@@ -12,16 +12,10 @@ export default function Login() {
   const history = useHistory();
 
   // Local state
-  const [form, setForm] = useState({});
+  const [form, setForm] = useState({ email: "", password: "" });
   const [errorMessage, setErrorMessage] = useState("");
 
   // Methods
-  function onChange(key, value) {
-    const field = { [key]: value };
-
-    setForm({ ...form, ...field });
-  }
-
   async function onSubmit(event) {
     event.preventDefault();
     setErrorMessage("");
@@ -31,7 +25,6 @@ export default function Login() {
   }
 
   async function onSuccess(uid) {
-    console.log("login sucess with uid", uid);
     history.push("/");
   }
 
@@ -39,21 +32,11 @@ export default function Login() {
     setErrorMessage(message);
   }
 
-  // Components
-  const InputFields = fields.map((item) => (
-    <InputField
-      key={item.key}
-      options={item}
-      state={form[item.key]}
-      onChange={onChange}
-    />
-  ));
-
   return (
     <div>
       <h1>Log in</h1>
       <form onSubmit={onSubmit}>
-        {InputFields}
+        <InputFields fields={fields} state={[form, setForm]} />
         <p>{errorMessage}</p>
         <button>Login</button>
       </form>

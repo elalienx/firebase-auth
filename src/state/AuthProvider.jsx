@@ -1,31 +1,16 @@
 // NPM package
-import { createContext, useContext, useState, useEffect } from "react";
-import { onAuthStateChanged } from "firebase/auth";
-
-// Project files
-import { authInstance } from "scripts/firebase";
+import { createContext, useContext, useState } from "react";
 
 // Properties
 const AuthContext = createContext(null);
 
 export function AuthProvider({ children }) {
   // Local state
-  const [isLogged, setIsLogged] = useState(false); // this will be deleted
-  const [auth, setAuth] = useState("");
+  const [isLogged, setIsLogged] = useState(false);
   const [user, setUser] = useState({});
 
-  // Methods
-  useEffect(() => {
-    onAuthStateChanged(authInstance, (user) => {
-      if (user) setAuth(user.uid);
-      else console.log("AuthProvider user signed out");
-    });
-  }, []);
-
   return (
-    <AuthContext.Provider
-      value={{ user, setUser, isLogged, setIsLogged, auth, setAuth }}
-    >
+    <AuthContext.Provider value={{ user, setUser, isLogged, setIsLogged }}>
       {children}
     </AuthContext.Provider>
   );

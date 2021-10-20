@@ -31,25 +31,12 @@ export default function App() {
     [setUser, setIsLogged]
   );
 
-  // We need to take care of the if is logged out case
-  useEffect(() => {
-    if (auth !== "") fetchUser("users", auth);
-  }, [fetchUser, auth]);
-
-  // Components
-  const Browser = (
-    <BrowserRouter>
-      <Switch>{isLogged ? <Logged /> : <Unlogged />}</Switch>
-    </BrowserRouter>
-  );
 
   return (
     <div className="App">
-      @<small>{auth}</small>@
-      <br />
-      {status === 0 && <p>Loading</p>}
-      {status === 1 && Browser}
-      {status === 2 && <p>Error</p>}
+      <BrowserRouter>
+        <Switch>{isLogged ? <Logged /> : <Unlogged />}</Switch>
+      </BrowserRouter>
     </div>
   );
 }
