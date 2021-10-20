@@ -13,15 +13,23 @@ export default function App() {
   const { isLogged, auth } = useAuth();
 
   // Methods
-  const fetchUser = useCallback(async (auth) => {
-    const user = await getDocument("users", auth);
-
-    console.log("App.jsx fetchUser() user", user);
-  }, []);
+  const fetchUser = useCallback(
+    async (path, auth) => {
+      try {
+        const user = await getDocument(path, auth);
+        setUser(user);
+        setStatus(1);
+      } catch (error) {
+        console.error("Error loading profile", error);
+        setStatus(2);
+      }
+    },
+    [setUser]
+  );
 
   useEffect(() => {
-    if (auth !== "") fetchUser(auth);
-  }, []);
+    if (auth !== "") fetchUser("users", auth);
+  }, [fetchUser]);
 
   return (
     <div className="App">
