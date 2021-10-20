@@ -5,14 +5,11 @@ import { Link, useHistory } from "react-router-dom";
 // Project files
 import InputFields from "components/InputFields";
 import fields from "data/fields-login.json";
-import { useAuth } from "state/AuthProvider";
 import { signIn } from "scripts/authentification";
-import { getDocument } from "scripts/fireStore";
 import InputCheckbox from "components/InputCheckbox";
 
 export default function Login() {
   // Global state
-  const { setIsLogged, setUser } = useAuth();
   const history = useHistory();
 
   // Local state
@@ -30,10 +27,6 @@ export default function Login() {
   }
 
   async function onSuccess(uid) {
-    const document = await getDocument("users", uid);
-
-    setUser(document);
-    setIsLogged(true);
     if (remember) localStorage.setItem("uid", uid);
     history.push("/");
   }
