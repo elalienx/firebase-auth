@@ -1,9 +1,3 @@
-/**
- * Note: This should be 2 Providers:
- * 1. UserProvier
- * 2. LoginStatusProvider
- */
-
 // NPM packages
 import { createContext, useContext, useState } from "react";
 
