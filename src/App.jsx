@@ -1,10 +1,6 @@
-// NPM packages
-import { BrowserRouter, Switch } from "react-router-dom";
-
 // Project files
+import Browser from "components/Browser";
 import { useUser } from "state/UserProvider";
-import Logged from "routes/Logged";
-import Unlogged from "routes/Unlogged";
 
 export default function App() {
   // Global state
@@ -12,9 +8,7 @@ export default function App() {
 
   return (
     <div className="App">
-      <BrowserRouter>
-        <Switch>{isLogged ? <Logged /> : <Unlogged />}</Switch>
-      </BrowserRouter>
+      <Browser isLogged={isLogged} />
     </div>
   );
 }
