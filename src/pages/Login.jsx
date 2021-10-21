@@ -32,7 +32,6 @@ export default function Login() {
   async function onSuccess(uid) {
     const document = await getDocument("users", uid);
 
-    console.log("Login.jsx", uid);
     setUser(document);
     setIsLogged(true);
     if (remember) localStorage.setItem("uid", uid);
