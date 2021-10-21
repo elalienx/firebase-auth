@@ -6,10 +6,7 @@ const UserContext = createContext(null);
 
 export function UserProvider({ children }) {
   // Local state
-  const [user, setUser] = useState({
-    email: "el_alienx@hotmail.com",
-    password: "12345678",
-  });
+  const [user, setUser] = useState({});
   const [isLogged, setIsLogged] = useState(false);
 
   return (

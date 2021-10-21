@@ -1,24 +1,38 @@
 // NPM packages
-import { useCallback, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 
 // Project files
 import Browser from "components/Browser";
 import { useUser } from "state/UserProvider";
+import { getDocument } from "scripts/firestore";
 
 export default function App() {
   // Global state
-  const { isLogged } = useUser();
+  const { isLogged, setUser, setIsLogged } = useUser();
 
   // Local state
   const [status, setStatus] = useState(0); // 0 loading, 1 ready, 2 error
 
   // Methods
-  const fetchUser = useCallback(async () => {
-    
 
-  }, []);
+  useEffect(() => {
+    async function fetchUser() {
+      const uid = localStorage.getItem("uid");
+      console.log("App.jsx", uid);
 
-  useEffect(() => {}, []);
+      if (uid) {
+        const user = await getDocument("users", uid);
+
+        setUser(user);
+        setIsLogged(true);
+        setStatus(1);
+      } else {
+        setStatus(1);
+      }
+    }
+
+    fetchUser();
+  }, [setUser, setIsLogged]);
 
   return (
     <div className="App">

@@ -12,7 +12,7 @@ import { getDocument } from "scripts/firestore";
 
 export default function Login() {
   // Global state
-  const { user, setUser, setIsLogged } = useUser();
+  const { setUser, setIsLogged } = useUser();
   const history = useHistory();
 
   // Local state
@@ -24,7 +24,7 @@ export default function Login() {
   async function onSubmit(event) {
     event.preventDefault();
     setErrorMessage("");
-    const account = await signIn(user.email, user.password);
+    const account = await signIn(form.email, form.password);
 
     account.isLogged ? onSuccess(account.payload) : onFailure(account.payload);
   }
@@ -32,6 +32,7 @@ export default function Login() {
   async function onSuccess(uid) {
     const document = await getDocument("users", uid);
 
+    console.log("Login.jsx", uid);
     setUser(document);
     setIsLogged(true);
     if (remember) localStorage.setItem("uid", uid);

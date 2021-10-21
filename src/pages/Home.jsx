@@ -6,12 +6,14 @@ import { useUser } from "state/UserProvider";
 
 export default function Home() {
   // Global state
-  const { user } = useUser();
+  const { user, setUser, setIsLogged } = useUser();
   const history = useHistory();
 
   // Methods
   function onLogout() {
-    alert("On logout...");
+    localStorage.setItem("uid", "");
+    setUser({});
+    setIsLogged(false);
     history.push("/login");
   }
 
