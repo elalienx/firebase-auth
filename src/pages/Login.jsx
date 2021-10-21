@@ -34,6 +34,7 @@ export default function Login() {
 
     setUser(document);
     setIsLogged(true);
+    if (remember) localStorage.setItem("uid", uid);
     history.push("/");
   }
 
