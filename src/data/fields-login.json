@@ -2,13 +2,15 @@
   {
     "key": "email",
     "label": "Email",
-    "placeholder": "eduardo.alvarez@novare.se",
-    "type": "email"
+    "placeholder": "john@mail.com",
+    "type": "email",
+    "required": true
   },
   {
     "key": "password",
     "label": "Password",
     "placeholder": "********",
-    "type": "password"
+    "type": "password",
+    "required": true
   }
 ]

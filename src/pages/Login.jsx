@@ -6,13 +6,13 @@ import { Link, useHistory } from "react-router-dom";
 import InputCheckbox from "components/InputCheckbox";
 import InputFields from "components/InputFields";
 import fields from "data/fields-login.json";
+import { useUser } from "state/UserProvider";
 import { signIn } from "scripts/authentification";
 import { getDocument } from "scripts/firestore";
-import { useAuth } from "state/AuthProvider";
 
 export default function Login() {
   // Global state
-  const { setIsLogged, setUser } = useAuth();
+  const { setUser, setIsLogged } = useUser();
   const history = useHistory();
 
   // Local state

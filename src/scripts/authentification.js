@@ -16,11 +16,10 @@ export async function createAccount(email, password) {
       email,
       password
     );
-    account.isCreated = true;
     account.payload = userCredential.user.uid;
+    account.isCreated = true;
   } catch (error) {
-    console.error("authentification.js error", error);
-    account.payload = error.code;
+    account.payload = error.message;
   }
 
   return account;
@@ -35,11 +34,10 @@ export async function signIn(email, password) {
       email,
       password
     );
-    account.isLogged = true;
     account.payload = userCredential.user.uid;
+    account.isLogged = true;
   } catch (error) {
-    console.error("authentification.js error", error);
-    account.payload = error.code;
+    account.payload = error.message;
   }
 
   return account;

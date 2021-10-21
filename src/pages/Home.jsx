@@ -2,24 +2,27 @@
 import { useHistory } from "react-router-dom";
 
 // Project files
-import { useAuth } from "state/AuthProvider";
+import { useUser } from "state/UserProvider";
 
 export default function Home() {
   // Global state
-  const { user, setIsLogged } = useAuth();
+  const { user, setUser, setIsLogged } = useUser();
   const history = useHistory();
 
   // Methods
   function onLogout() {
-    setIsLogged(false);
     localStorage.setItem("uid", "");
-    history.push("/");
+    setUser({});
+    setIsLogged(false);
+    history.push("/login");
   }
 
   return (
     <div>
       <h1>Home</h1>
-      <p>Welcome to our page {user.name}.</p>
+      <p>
+        Welcome to our page @<b>{user.name}</b>@
+      </p>
       <button onClick={onLogout}>Logout</button>
     </div>
   );

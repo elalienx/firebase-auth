@@ -4,13 +4,13 @@ import ReactDOM from "react-dom";
 
 // Project files
 import App from "./App";
-import { AuthProvider } from "state/AuthProvider";
+import { UserProvider } from "./state/UserProvider";
 
 ReactDOM.render(
   <React.StrictMode>
-    <AuthProvider>
+    <UserProvider>
       <App />
-    </AuthProvider>
+    </UserProvider>
   </React.StrictMode>,
   document.getElementById("root")
 );
